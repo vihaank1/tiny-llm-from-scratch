@@ -5,3 +5,5 @@ __pycache__/
 data/*_raw.txt
 training_log.txt
 .DS_Store
+runs/
+backups/

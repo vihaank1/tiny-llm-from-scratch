@@ -1,0 +1,27 @@
+{
+  "train_characters": 1286809,
+  "train_words_whitespace": 224757,
+  "validation_characters": 32591,
+  "validation_words_whitespace": 5656,
+  "vocab_size": 94,
+  "validation_targets": 32590,
+  "train_sha256": "ac9d84b7c040accbf3532ff89ebcf17c15f7d3705258a050b12b4fe14f4c8eb6",
+  "validation_sha256": "7ba435750b4552736b6e95074cfe91d3dd9db6407bd4952c8ac58e17ac76fa50",
+  "alpha": 1.0,
+  "training_counts_only": true,
+  "evaluation": "All validation next-character targets, excluding first character",
+  "scores": {
+    "uniform": {
+      "nats_per_character": 4.543294782270004,
+      "bits_per_character": 6.554588851677638
+    },
+    "unigram": {
+      "nats_per_character": 3.038403719336682,
+      "bits_per_character": 4.383489978105613
+    },
+    "bigram": {
+      "nats_per_character": 2.394217824358908,
+      "bits_per_character": 3.45412618201056
+    }
+  }
+}

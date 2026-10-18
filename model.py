@@ -66,7 +66,7 @@ class FeedForward(nn.Module):
 
 
 class TransformerBlock(nn.Module):
-    def __init__(self, embedding_size, num_heads):
+    def __init__(self, embedding_size, num_heads, dropout=0.2):
         super().__init__()
 
         self.norm1=nn.LayerNorm(embedding_size)
@@ -74,21 +74,21 @@ class TransformerBlock(nn.Module):
 
         self.norm2=nn.LayerNorm(embedding_size)
         self.feed_forward=FeedForward(embedding_size)
-        self.dropout=nn.Dropout(0.2)
+        self.dropout=nn.Dropout(dropout)
 
     def forward(self,x):
         attention_output=self.attention(self.norm1(x))
-        x=x+self.attention(self.norm1(x))
+        x=x+self.dropout(attention_output)
 
         feed_forward_output=self.feed_forward(self.norm2(x))
-        x=x+self.feed_forward(self.norm2(x))
+        x=x+self.dropout(feed_forward_output)
         return x
 
 
 class TinyGPT(nn.Module):
     def __init__(
             self, vocab_size, block_size,
-            embedding_size=16, num_heads=2, num_layers=2
+            embedding_size=16, num_heads=2, num_layers=2, dropout=0.2
     ):
         super().__init__()
 
@@ -97,7 +97,7 @@ class TinyGPT(nn.Module):
         self.position_embedding=nn.Embedding(block_size, embedding_size)
 
         self.blocks=nn.ModuleList([
-            TransformerBlock(embedding_size, num_heads)
+            TransformerBlock(embedding_size, num_heads, dropout)
             for _ in range(num_layers)
         ])
 
