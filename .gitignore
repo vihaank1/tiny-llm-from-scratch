@@ -1,4 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
+*.pt
+data/*_raw.txt
+training_log.txt
 .DS_Store
